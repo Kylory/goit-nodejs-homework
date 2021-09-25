@@ -1,9 +1,10 @@
+/* eslint-disable eqeqeq */
 const getAllContacts = require('./getAllContacts')
 
 // Get contact by ID
 const getContactById = async (id) => {
   const contacts = await getAllContacts()
-  const index = contacts.findIndex((item) => item.id === id)
+  const index = contacts.findIndex((item) => item.id == id)
 
   if (index < 0) {
     return null

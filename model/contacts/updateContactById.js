@@ -1,11 +1,11 @@
 /* eslint-disable eqeqeq */
 const fs = require('fs/promises')
 const path = require('path')
-const getAllContacts = require('./getAllContacts')
 const contactsPath = path.join(__dirname, '..', 'contacts.json')
+const getAllContacts = require('./getAllContacts')
 
-// Remove contact by ID
-const removeContact = async (id) => {
+// Get contact by ID
+const updateContactById = async (id, data) => {
   const contacts = await getAllContacts()
   const index = contacts.findIndex((item) => item.id == id)
 
@@ -13,10 +13,10 @@ const removeContact = async (id) => {
     return null
   }
 
-  const newContacts = contacts.filter((item) => item.id != id)
-  fs.writeFile(contactsPath, JSON.stringify(newContacts))
+  contacts[index] = { ...contacts[index], ...data }
+  fs.writeFile(contactsPath, JSON.stringify(contacts))
 
-  return true
+  return contacts[index]
 }
 
-module.exports = removeContact
+module.exports = updateContactById

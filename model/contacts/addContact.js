@@ -4,7 +4,7 @@ const contactsPath = path.join(__dirname, '..', 'contacts.json')
 const getAllContacts = require('./getAllContacts')
 
 // Add new contact
-const addContact = async (name, email, phone) => {
+const addContact = async ({ name, email, phone }) => {
   const contacts = await getAllContacts()
   const newContact = {
     id: contacts.length + 1,
