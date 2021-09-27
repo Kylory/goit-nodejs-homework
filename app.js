@@ -1,5 +1,4 @@
 const express = require('express')
-const { MongoClient } = require('mongodb')
 const logger = require('morgan')
 const cors = require('cors')
 
