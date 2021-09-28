@@ -7,7 +7,7 @@ const {
   removeContact,
   addContact,
   updateContactById,
-} = require('../model/contacts/index')
+} = require('../../model/contacts/index')
 
 const joiSchema = Joi.object({
   name: Joi.string().required(),
@@ -17,7 +17,7 @@ const joiSchema = Joi.object({
 
 const getAll = async (req, res, next) => {
   const contacts = await getAllContacts()
-  res.status(200).json(contacts)
+  res.status(200).json({ contacts })
 }
 
 const getById = async (req, res, next) => {
