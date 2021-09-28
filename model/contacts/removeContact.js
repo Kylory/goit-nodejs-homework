@@ -1,22 +1,13 @@
-/* eslint-disable eqeqeq */
-const fs = require('fs/promises')
-const path = require('path')
-const getAllContacts = require('./getAllContacts')
-const contactsPath = path.join(__dirname, '..', 'contacts.json')
+const { ObjectID } = require('mongodb')
+const { connectMongo } = require('../../db/connection')
 
 // Remove contact by ID
 const removeContact = async (id) => {
-  const contacts = await getAllContacts()
-  const index = contacts.findIndex((item) => item.id == id)
+  const { Contacts } = await connectMongo()
+  const objectId = new ObjectID(id)
 
-  if (index < 0) {
-    return null
-  }
-
-  const newContacts = contacts.filter((item) => item.id != id)
-  fs.writeFile(contactsPath, JSON.stringify(newContacts))
-
-  return true
+  const result = await Contacts.deleteOne({ _id: objectId })
+  return result
 }
 
 module.exports = removeContact

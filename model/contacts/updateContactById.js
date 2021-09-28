@@ -1,22 +1,13 @@
-/* eslint-disable eqeqeq */
-const fs = require('fs/promises')
-const path = require('path')
-const contactsPath = path.join(__dirname, '..', 'contacts.json')
-const getAllContacts = require('./getAllContacts')
+const { ObjectID } = require('mongodb')
+const { connectMongo } = require('../../db/connection')
 
 // Get contact by ID
 const updateContactById = async (id, data) => {
-  const contacts = await getAllContacts()
-  const index = contacts.findIndex((item) => item.id == id)
+  const { Contacts } = await connectMongo()
 
-  if (index < 0) {
-    return null
-  }
+  const objectId = new ObjectID(id)
 
-  contacts[index] = { ...contacts[index], ...data }
-  fs.writeFile(contactsPath, JSON.stringify(contacts))
-
-  return contacts[index]
+  await Contacts.updateOne({ _id: objectId }, { $set: data })
 }
 
 module.exports = updateContactById

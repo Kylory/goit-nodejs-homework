@@ -1,21 +1,12 @@
-const fs = require('fs/promises')
-const path = require('path')
-const contactsPath = path.join(__dirname, '..', 'contacts.json')
-const getAllContacts = require('./getAllContacts')
+const { connectMongo } = require('../../db/connection')
 
 // Add new contact
-const addContact = async ({ name, email, phone }) => {
-  const contacts = await getAllContacts()
-  const newContact = {
-    id: contacts.length + 1,
-    name: name,
-    email: email,
-    phone: phone,
-  }
-  const newContacts = [...contacts, newContact]
-  fs.writeFile(contactsPath, JSON.stringify(newContacts))
+const addContact = async ({ name, email, phone, favorite }) => {
+  const { Contacts } = await connectMongo()
 
-  return newContact
+  const result = await Contacts.insertOne({ name, email, phone, favorite })
+
+  return result
 }
 
 module.exports = addContact

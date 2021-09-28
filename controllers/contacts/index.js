@@ -1,5 +1,9 @@
-const contacts = require('./contacts')
+const { getAll, getById, add, updateById, removeById } = require('./contacts')
 
 module.exports = {
-  contacts,
+  getAll,
+  getById,
+  add,
+  updateById,
+  removeById,
 }

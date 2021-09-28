@@ -7,7 +7,7 @@ const {
   add,
   updateById,
   removeById,
-} = require('../../controllers/contacts')
+} = require('../../controllers/contacts/index')
 
 router.get('/', controllerWrapper(getAll))
 

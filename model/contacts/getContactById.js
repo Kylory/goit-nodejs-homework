@@ -1,16 +1,14 @@
-/* eslint-disable eqeqeq */
-const getAllContacts = require('./getAllContacts')
+const { ObjectID } = require('mongodb')
+const { connectMongo } = require('../../db/connection')
 
 // Get contact by ID
 const getContactById = async (id) => {
-  const contacts = await getAllContacts()
-  const index = contacts.findIndex((item) => item.id == id)
+  const { Contacts } = await connectMongo()
 
-  if (index < 0) {
-    return null
-  }
+  const objectId = new ObjectID(id)
 
-  return contacts[index]
+  const contact = await Contacts.find({ _id: objectId }).toArray()
+  return contact
 }
 
 module.exports = getContactById
