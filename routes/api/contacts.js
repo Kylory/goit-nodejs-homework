@@ -1,13 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const { controllerWrapper } = require('../../middlewares/index')
+const { controllerWrapper } = require('../../middlewares')
 const {
   getAll,
   getById,
   add,
   updateById,
   removeById,
-} = require('../../controllers/contacts/index')
+} = require('../../controllers/contacts')
 
 router.get('/', controllerWrapper(getAll))
 
