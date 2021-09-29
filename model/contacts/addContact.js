@@ -4,9 +4,7 @@ const { connectMongo } = require('../../db/connection')
 const addContact = async ({ name, email, phone, favorite }) => {
   const { Contacts } = await connectMongo()
 
-  const result = await Contacts.insertOne({ name, email, phone, favorite })
-
-  return result
+  return await Contacts.insertOne({ name, email, phone, favorite })
 }
 
 module.exports = addContact

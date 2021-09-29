@@ -6,8 +6,7 @@ const removeContact = async (id) => {
   const { Contacts } = await connectMongo()
   const objectId = new ObjectID(id)
 
-  const result = await Contacts.deleteOne({ _id: objectId })
-  return result
+  return await Contacts.deleteOne({ _id: objectId })
 }
 
 module.exports = removeContact

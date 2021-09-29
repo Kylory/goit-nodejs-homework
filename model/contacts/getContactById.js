@@ -7,8 +7,7 @@ const getContactById = async (id) => {
 
   const objectId = new ObjectID(id)
 
-  const contact = await Contacts.find({ _id: objectId }).toArray()
-  return contact
+  return await Contacts.find({ _id: objectId }).toArray()
 }
 
 module.exports = getContactById
