@@ -3,13 +3,13 @@ const { NotFound } = require('http-errors')
 
 const getById = async (req, res, next) => {
   const id = req.params.contactId
-  const contact = await getContactById(id)
+  const result = await getContactById(id)
 
-  if (contact.length === 0) {
+  if (!result) {
     throw new NotFound(`Contact with id ${id} not found`)
   }
 
-  res.json(contact)
+  res.json(result)
 }
 
 module.exports = { getById }

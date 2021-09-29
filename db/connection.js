@@ -1,16 +1,26 @@
-const { MongoClient } = require('mongodb')
+// const { MongoClient } = require('mongodb')
+const mongoose = require('mongoose')
+mongoose.Promise = global.Promise
+require('dotenv').config()
+
+// main().catch((err) => console.log(err))
 
 const connectMongo = async () => {
-  const client = await MongoClient.connect(process.env.MONGO_URL, {
+  return mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  const db = client.db()
 
-  const Contacts = db.collection('contacts')
-  console.log('DB connected successfully')
+  // const client = await MongoClient.connect(process.env.MONGO_URL, {
+  //   useNewUrlParser: true,
+  //   useUnifiedTopology: true,
+  // })
+  // const db = client.db()
 
-  return { Contacts }
+  // const Contacts = db.collection('contacts')
+  // console.log('DB connected successfully')
+
+  // return { Contacts }
 }
 
 module.exports = {

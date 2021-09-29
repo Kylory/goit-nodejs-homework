@@ -9,6 +9,7 @@ const start = async () => {
 
   app.listen(PORT, (error) => {
     if (error) console.error('Error at server launch:', error)
+    console.log('Database connection successful')
     console.log(`Server running. Use our API on port ${PORT}`)
   })
 }

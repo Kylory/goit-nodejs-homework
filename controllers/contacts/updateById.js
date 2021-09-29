@@ -20,7 +20,7 @@ const updateById = async (req, res, next) => {
 
   const udatedContact = await updateContactById(id, data)
 
-  if (!udatedContact.modifiedCount) {
+  if (!udatedContact) {
     throw new NotFound(`Contact with id ${id} not found`)
   }
 
