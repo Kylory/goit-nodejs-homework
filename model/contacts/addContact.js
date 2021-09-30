@@ -8,7 +8,7 @@ const { Contact } = require('../../db/contactModel')
 //   return await Contacts.insertOne({ name, email, phone, favorite })
 // }
 
-const addContact = async ({ name, email, phone, favorite }) => {
+const addContact = async ({ name, email, phone, favorite = false }) => {
   // const contact = new Contact({ name, email, phone, favorite })
   // await contact.create()
   // return contact

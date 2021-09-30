@@ -11,8 +11,8 @@ const { Contact } = require('../../db/contactModel')
 //   return await Contacts.updateOne({ _id: objectId }, { $set: data })
 // }
 
-const updateContactById = (id, data) => {
+const updateContactStatusById = (id, data) => {
   return Contact.findByIdAndUpdate({ _id: id }, data, { new: true })
 }
 
-module.exports = updateContactById
+module.exports = updateContactStatusById

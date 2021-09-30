@@ -7,6 +7,7 @@ const {
   add,
   updateById,
   removeById,
+  updateStatusById,
 } = require('../../controllers/contacts')
 
 router.get('/', controllerWrapper(getAll))
@@ -18,5 +19,7 @@ router.post('/', controllerWrapper(add))
 router.delete('/:contactId', controllerWrapper(removeById))
 
 router.put('/:contactId', controllerWrapper(updateById))
+
+router.patch('/:contactId/favorite', controllerWrapper(updateStatusById))
 
 module.exports = router
