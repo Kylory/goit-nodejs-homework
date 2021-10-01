@@ -12,10 +12,13 @@ const joiSchema = Joi.object({
 const updateById = async (req, res, next) => {
   const id = req.params.contactId
   const data = req.body
-  console.log(data)
   const { error } = joiSchema.validate(req.body)
 
   if (error) {
+    throw new BadRequest('missing fields')
+  }
+
+  if (Object.keys(data).length) {
     throw new BadRequest('missing fields')
   }
 
