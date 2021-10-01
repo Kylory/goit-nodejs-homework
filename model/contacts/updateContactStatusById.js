@@ -1,5 +1,3 @@
-// updateContactStatus
-
 const { Contact } = require('../../db/contactModel')
 
 const updateContactStatus = (id, data) => {

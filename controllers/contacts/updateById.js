@@ -3,15 +3,16 @@ const { NotFound, BadRequest } = require('http-errors')
 const Joi = require('joi')
 
 const joiSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().required(),
-  phone: Joi.string().required(),
-  favorite: Joi.boolean().required(),
+  name: Joi.string(),
+  email: Joi.string(),
+  phone: Joi.string(),
+  favorite: Joi.boolean(),
 })
 
 const updateById = async (req, res, next) => {
   const id = req.params.contactId
   const data = req.body
+  console.log(data)
   const { error } = joiSchema.validate(req.body)
 
   if (error) {
