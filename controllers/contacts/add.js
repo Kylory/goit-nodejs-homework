@@ -13,7 +13,7 @@ const add = async (req, res, next) => {
   const { error } = joiSchema.validate(req.body)
 
   if (error) {
-    throw new BadRequest('missing required name field')
+    throw new BadRequest('missing required field')
   }
 
   const newContact = await addContact(req.body)
