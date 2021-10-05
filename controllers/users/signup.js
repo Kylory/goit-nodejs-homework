@@ -21,6 +21,7 @@ const signup = async (req, res, next) => {
   }
 
   const result = await addUser(req.body)
+  console.log(result)
 
   if (!result) {
     res.status(409).json({
@@ -33,7 +34,16 @@ const signup = async (req, res, next) => {
     return
   }
 
-  res.status(201).json({ message: 'Added new user' })
+  res.status(201).json({
+    Status: '201 Created',
+    'Content-Type': 'application/json',
+    ResponseBody: {
+      user: {
+        email: result.email,
+        subscription: result.subscription,
+      },
+    },
+  })
 }
 
 module.exports = {
