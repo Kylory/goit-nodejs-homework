@@ -3,7 +3,7 @@ mongoose.Promise = global.Promise
 require('dotenv').config()
 
 const connectMongo = async () => {
-  return mongoose.connect(process.env.MONGO_URL, {
+  return mongoose.connect(process.env.DB_HOST, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
