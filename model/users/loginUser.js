@@ -23,11 +23,13 @@ const loginUser = async ({ email, password }) => {
     process.env.JWT_SECRET
   )
 
-  return token
-
-  //   console.log(user)
-  //   console.log(checkPassword)
-  //   console.log(token)
+  return {
+    token,
+    user: {
+      email: user.email,
+      subscription: user.subscription,
+    },
+  }
 }
 
 module.exports = loginUser

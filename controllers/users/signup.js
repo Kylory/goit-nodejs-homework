@@ -15,13 +15,13 @@ const signup = async (req, res, next) => {
     res.status(400).json({
       Status: '400 Bad Request',
       'Content-Type': 'application/json',
-      ResponseBody: 'missing required field',
+      ResponseBody: 'Validation error',
     })
     return
   }
 
   const result = await addUser(req.body)
-  console.log(result)
+  // console.log(result)
 
   if (!result) {
     res.status(409).json({
