@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { controllerWrapper } = require('../../middlewares')
+const { controllerWrapper, authMiddleware } = require('../../middlewares')
 const {
   getAll,
   getById,
@@ -9,6 +9,8 @@ const {
   removeById,
   updateStatusById,
 } = require('../../controllers/contacts')
+
+router.use(authMiddleware)
 
 router.get('/', controllerWrapper(getAll))
 

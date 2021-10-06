@@ -1,7 +1,9 @@
 const { Contact } = require('../../db/contactModel')
 
-const updateContactStatusById = (id, data) => {
-  return Contact.findByIdAndUpdate({ _id: id }, data, { new: true })
+const updateContactById = (id, _id, data) => {
+  return Contact.findByIdAndUpdate({ _id: id, owner: _id }, data, {
+    new: true,
+  })
 }
 
-module.exports = updateContactStatusById
+module.exports = updateContactById

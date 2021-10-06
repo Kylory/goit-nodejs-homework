@@ -6,10 +6,10 @@ const joiSchema = Joi.object({
   name: Joi.string(),
   email: Joi.string(),
   phone: Joi.string(),
-  favorite: Joi.boolean(),
 })
 
 const updateById = async (req, res, next) => {
+  const { _id } = req.user
   const id = req.params.contactId
   const data = req.body
   const { error } = joiSchema.validate(req.body)
@@ -18,11 +18,11 @@ const updateById = async (req, res, next) => {
     throw new BadRequest('missing fields')
   }
 
-  if (Object.keys(data).length) {
+  if (!Object.keys(data).length) {
     throw new BadRequest('missing fields')
   }
 
-  const udatedContact = await updateContactById(id, data)
+  const udatedContact = await updateContactById(id, _id, data)
 
   if (!udatedContact) {
     throw new NotFound(`Contact with id ${id} not found`)

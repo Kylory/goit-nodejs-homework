@@ -16,12 +16,16 @@ const loginUser = async ({ email, password }) => {
     return null
   }
 
+  // Generate new token
   const token = jwt.sign(
     {
       _id: user._id,
     },
     process.env.JWT_SECRET
   )
+
+  // Update user token in DB
+  await User.findByIdAndUpdate({ _id: user._id }, { token: token })
 
   return {
     token,

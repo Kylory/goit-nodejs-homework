@@ -7,6 +7,7 @@ const joiSchema = Joi.object({
 })
 
 const updateStatusById = async (req, res, next) => {
+  const { _id } = req.user
   const id = req.params.contactId
   const data = req.body
   const { error } = joiSchema.validate(req.body)
@@ -15,7 +16,7 @@ const updateStatusById = async (req, res, next) => {
     throw new BadRequest('missing field favorite')
   }
 
-  const udatedContact = await updateContactStatusById(id, data)
+  const udatedContact = await updateContactStatusById(id, _id, data)
 
   if (!udatedContact) {
     throw new NotFound(`Contact with id ${id} not found`)

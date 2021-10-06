@@ -26,6 +26,7 @@ const login = async (req, res, next) => {
     // throw new Unauthorized('Authorization error')
     res.status(401).json({
       Status: '401 Unauthorized',
+      'Content-Type': 'application/json',
       ResponseBody: {
         message: 'Email or password is wrong',
       },

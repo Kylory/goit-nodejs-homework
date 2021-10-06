@@ -16,7 +16,8 @@ const add = async (req, res, next) => {
     throw new BadRequest('missing required field')
   }
 
-  const newContact = await addContact(req.body)
+  const { _id } = req.user
+  const newContact = await addContact(req.body, _id)
 
   res.status(201).json({ message: 'Added new contact', newContact: newContact })
 }
