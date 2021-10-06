@@ -18,7 +18,7 @@ const updateById = async (req, res, next) => {
     throw new BadRequest('missing fields')
   }
 
-  if (Object.keys(data).length) {
+  if (!Object.keys(data).length) {
     throw new BadRequest('missing fields')
   }
 
