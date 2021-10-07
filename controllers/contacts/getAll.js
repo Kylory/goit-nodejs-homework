@@ -1,6 +1,6 @@
 const { getAllContacts } = require('../../model/contacts/index')
 
-const getAll = async (req, res, next) => {
+const getAll = async (req, res) => {
   const { _id } = req.user
   const contacts = await getAllContacts(_id)
 

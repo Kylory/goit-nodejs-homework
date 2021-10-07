@@ -1,7 +1,7 @@
 const { User } = require('../../db/userModel')
 const bcrypt = require('bcrypt')
 
-const addContact = async ({ email, password }) => {
+const addUser = async ({ email, password }) => {
   const user = await User.findOne({ email })
 
   if (user) {
@@ -11,4 +11,4 @@ const addContact = async ({ email, password }) => {
   return await User.create({ email, password: await bcrypt.hash(password, 10) })
 }
 
-module.exports = addContact
+module.exports = addUser
