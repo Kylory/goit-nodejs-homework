@@ -1,5 +1,4 @@
 const { loginUser } = require('../../model/users')
-// const { BadRequest, Unauthorized } = require('http-errors')
 const Joi = require('joi')
 
 const joiSchema = Joi.object({
@@ -11,7 +10,6 @@ const login = async (req, res, next) => {
   const { error } = joiSchema.validate(req.body)
 
   if (error) {
-    // throw new BadRequest('missing required field')
     res.status(400).json({
       Status: '400 Bad Request',
       'Content-Type': 'application/json',
@@ -23,7 +21,6 @@ const login = async (req, res, next) => {
   const result = await loginUser(req.body)
 
   if (!result) {
-    // throw new Unauthorized('Authorization error')
     res.status(401).json({
       Status: '401 Unauthorized',
       'Content-Type': 'application/json',
@@ -34,7 +31,6 @@ const login = async (req, res, next) => {
     return
   }
 
-  // res.status(201).json({ message: 'Log in successful', token: result })
   res.status(201).json({
     Status: '200 OK',
     'Content-Type': 'application/json',

@@ -1,5 +1,4 @@
 const { addUser } = require('../../model/users')
-// const { BadRequest } = require('http-errors')
 const Joi = require('joi')
 
 const joiSchema = Joi.object({
@@ -11,7 +10,6 @@ const signup = async (req, res, next) => {
   const { error } = joiSchema.validate(req.body)
 
   if (error) {
-    // throw new BadRequest('missing required field')
     res.status(400).json({
       Status: '400 Bad Request',
       'Content-Type': 'application/json',
@@ -21,7 +19,6 @@ const signup = async (req, res, next) => {
   }
 
   const result = await addUser(req.body)
-  // console.log(result)
 
   if (!result) {
     res.status(409).json({
