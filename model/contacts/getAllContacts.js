@@ -1,12 +1,15 @@
 const { Contact } = require('../../db/contactModel')
 
-const getAllContacts = async (owner, page, limit) => {
+const getAllContacts = async (owner, page = 1, limit = 20, favorite) => {
   const options = {
     page,
     limit,
   }
   // return await Contact.find({ owner })
-  return await Contact.paginate(Contact.find({ owner }), options)
+  if (!favorite) {
+    return await Contact.paginate(Contact.find({ owner }), options)
+  }
+  return await Contact.paginate(Contact.find({ owner, favorite }), options)
 }
 
 module.exports = getAllContacts
