@@ -9,7 +9,7 @@ const joiSchema = Joi.object({
   favorite: Joi.boolean(),
 })
 
-const add = async (req, res, next) => {
+const add = async (req, res) => {
   const { error } = joiSchema.validate(req.body)
 
   if (error) {

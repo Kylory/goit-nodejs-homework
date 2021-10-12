@@ -1,7 +1,7 @@
 const { getContactById } = require('../../model/contacts/index')
 const { NotFound } = require('http-errors')
 
-const getById = async (req, res, next) => {
+const getById = async (req, res) => {
   const { _id } = req.user
   const id = req.params.contactId
   const result = await getContactById(id, _id)

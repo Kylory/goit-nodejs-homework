@@ -5,7 +5,7 @@ const getAllContacts = async (owner, page = 1, limit = 20, favorite) => {
     page,
     limit,
   }
-  // return await Contact.find({ owner })
+
   if (!favorite) {
     return await Contact.paginate(Contact.find({ owner }), options)
   }

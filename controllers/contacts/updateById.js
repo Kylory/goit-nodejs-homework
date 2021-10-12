@@ -8,7 +8,7 @@ const joiSchema = Joi.object({
   phone: Joi.string(),
 })
 
-const updateById = async (req, res, next) => {
+const updateById = async (req, res) => {
   const { _id } = req.user
   const id = req.params.contactId
   const data = req.body
@@ -22,13 +22,13 @@ const updateById = async (req, res, next) => {
     throw new BadRequest('missing fields')
   }
 
-  const udatedContact = await updateContactById(id, _id, data)
+  const updatedContact = await updateContactById(id, _id, data)
 
-  if (!udatedContact) {
+  if (!updatedContact) {
     throw new NotFound(`Contact with id ${id} not found`)
   }
 
-  res.json({ message: 'Contact updated', udatedContact: udatedContact })
+  res.json({ message: 'Contact updated', updatedContact: updatedContact })
 }
 
 module.exports = { updateById }

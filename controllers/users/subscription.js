@@ -6,23 +6,18 @@ const joiSchema = Joi.object({
   subscription: Joi.string().required(),
 })
 
-const subscription = async (req, res, next) => {
+const subscription = async (req, res) => {
   const { _id } = req.user
   const data = req.body
-  // console.log('data', data.subscription)
   const { error } = joiSchema.validate(req.body)
 
-  if (error) {
+  if (error || !['starter', 'pro', 'business'].includes(data.subscription)) {
     throw new BadRequest('missing field subscription')
   }
 
-  if (!['starter', 'pro', 'business'].includes(data.subscription)) {
-    throw new BadRequest('incorrect field subscription')
-  }
+  const { subscription } = await updateUserSubscription(_id, data)
 
-  const udatedUser = await updateUserSubscription(_id, data)
-
-  res.json({ message: 'updateUserSubscription', udatedUser: udatedUser })
+  res.json({ message: 'User subscription updated', subscription })
 }
 
 module.exports = { subscription }

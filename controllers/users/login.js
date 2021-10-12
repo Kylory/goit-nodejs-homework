@@ -6,7 +6,7 @@ const joiSchema = Joi.object({
   password: Joi.string().required(),
 })
 
-const login = async (req, res, next) => {
+const login = async (req, res) => {
   const { error } = joiSchema.validate(req.body)
 
   if (error) {
