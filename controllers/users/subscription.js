@@ -1,4 +1,4 @@
-const { updateUserSubscription } = require('../../model/contacts')
+const { updateUserSubscription } = require('../../model/users')
 const { BadRequest } = require('http-errors')
 const Joi = require('joi')
 
@@ -9,15 +9,20 @@ const joiSchema = Joi.object({
 const subscription = async (req, res, next) => {
   const { _id } = req.user
   const data = req.body
+  // console.log('data', data.subscription)
   const { error } = joiSchema.validate(req.body)
 
   if (error) {
-    throw new BadRequest('missing field favorite')
+    throw new BadRequest('missing field subscription')
   }
 
-  const udatedContact = await updateUserSubscription(_id, data)
+  if (!['starter', 'pro', 'business'].includes(data.subscription)) {
+    throw new BadRequest('incorrect field subscription')
+  }
 
-  res.json({ message: 'Contact updated', udatedContact: udatedContact })
+  const udatedUser = await updateUserSubscription(_id, data)
+
+  res.json({ message: 'updateUserSubscription', udatedUser: udatedUser })
 }
 
 module.exports = { subscription }
