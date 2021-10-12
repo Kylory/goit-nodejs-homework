@@ -9,6 +9,8 @@ router.post('/login', controllerWrapper(login))
 
 router.use(authMiddleware)
 
+router.patch('/', controllerWrapper(subscription))
+
 router.post('/logout', controllerWrapper(logout))
 
 router.get('/current', controllerWrapper(current))
