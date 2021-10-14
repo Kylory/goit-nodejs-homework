@@ -26,7 +26,7 @@ const authMiddleware = async (req, res, next) => {
 
   // Перевіряємо чи є в headers.authorization токен
   const [tokenType, token] = req.headers.authorization.split(' ')
-  if (!token) {
+  if (!token || tokenType !== 'Bearer') {
     unauthorized(res)
     return
   }
