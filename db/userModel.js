@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Password is required'],
   },
+  avatarURL: { type: String },
   subscription: {
     type: String,
     enum: ['starter', 'pro', 'business'],

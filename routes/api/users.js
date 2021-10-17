@@ -24,4 +24,6 @@ router.post('/logout', authMiddleware, controllerWrapper(logout))
 
 router.get('/current', authMiddleware, controllerWrapper(current))
 
+router.patch('/avatars', authMiddleware, controllerWrapper())
+
 module.exports = router
