@@ -3,6 +3,7 @@ const logger = require('morgan')
 const cors = require('cors')
 const multer = require('multer')
 const path = require('path')
+const fs = require('fs').promises
 
 const contactsRouter = require('./routes/api/contacts')
 const usersRouter = require('./routes/api/users')
@@ -13,11 +14,11 @@ const uploadConfig = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, tempDir)
   },
-  filemane: (req, file, cb) => {
+  filename: (req, file, cb) => {
     cb(null, file.originalname)
   },
   limits: {
-    fileSize: 2048,
+    fileSize: 4096,
   },
 })
 
@@ -36,8 +37,18 @@ app.use(express.json())
 
 app.use('/api/contacts', contactsRouter)
 app.use('/api/users', usersRouter)
-app.post('/api/users/avatars', upload.single('image'), (req, res) => {
-  console.log(req.file)
+app.post('/api/users/avatars', upload.single('image'), async (req, res) => {
+  // console.log(req.file)
+  const { path: tempDir, originalname } = req.file
+  const uploadDir = path.join(__dirname, 'public/avatars', originalname)
+  // console.log(tempDir)
+  // console.log(uploadDir)
+  await fs.rename(tempDir, uploadDir)
+  res.json({
+    ResponseBody: {
+      avatarURL: uploadDir,
+    },
+  })
 })
 
 app.use((req, res) => {

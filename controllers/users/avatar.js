@@ -7,11 +7,11 @@ const uploadConfig = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, tempDir)
   },
-  filemane: (req, file, cb) => {
+  filename: (req, file, cb) => {
     cb(null, file.originalname)
   },
   limits: {
-    fileSize: 2048,
+    fileSize: 4096,
   },
 })
 
