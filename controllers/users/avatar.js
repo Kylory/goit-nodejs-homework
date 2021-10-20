@@ -1,18 +1,18 @@
 const fs = require('fs').promises
 const path = require('path')
-const { v4 } = require('uuid')
+const { updateUserAvatar } = require('../../model/users')
 
-const updateUserAvatar = async (req, res, next) => {
+const avatar = async (req, res, next) => {
   const { path: tempDir, originalname } = req.file
+  const { _id } = req.user
 
-  const id = v4()
   const [extension] = originalname.split(' ').reverse()
-  const filename = `${id}-${extension}`
+  const filename = `${_id}-${extension}`
 
-  // TODO: додати оновлення avatarURL юзера
   const uploadDir = path.join(__dirname, '../../', 'public/avatars', filename)
   try {
     await fs.rename(tempDir, uploadDir)
+    await updateUserAvatar(_id, uploadDir)
     res.json({
       ResponseBody: {
         avatarURL: uploadDir,
@@ -24,4 +24,4 @@ const updateUserAvatar = async (req, res, next) => {
   }
 }
 
-module.exports = { updateUserAvatar }
+module.exports = { avatar }
