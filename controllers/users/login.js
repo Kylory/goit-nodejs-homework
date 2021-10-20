@@ -18,6 +18,7 @@ const login = async (req, res) => {
     return
   }
 
+  // Поверне null, якщо юзера немає в БД
   const result = await loginUser(req.body)
 
   if (!result) {

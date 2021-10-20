@@ -18,12 +18,14 @@ const updateById = async (req, res) => {
     throw new BadRequest('missing fields')
   }
 
+  // Якщо в тілі запиту порожній об'єкт
   if (!Object.keys(data).length) {
     throw new BadRequest('missing fields')
   }
 
   const updatedContact = await updateContactById(id, _id, data)
 
+  // Якщо котакт не знайдено в БД
   if (!updatedContact) {
     throw new NotFound(`Contact with id ${id} not found`)
   }

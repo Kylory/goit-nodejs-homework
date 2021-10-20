@@ -6,12 +6,13 @@ require('dotenv').config()
 const loginUser = async ({ email, password }) => {
   const user = await User.findOne({ email })
 
+  // Якщо такого юзера немає в БД повертаємо null, який обробить інша функція
   if (!user) {
     return null
   }
 
+  // Перевіряємо пароль. Якщо не співпадає, то повертаємо null, який обробить інша функція
   const checkPassword = await bcrypt.compare(password, user.password)
-
   if (!checkPassword) {
     return null
   }

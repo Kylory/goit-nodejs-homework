@@ -18,6 +18,7 @@ const signup = async (req, res) => {
     return
   }
 
+  // addUser поверне null, якщо такий юзер уже є в БД
   const result = await addUser(req.body)
 
   if (!result) {

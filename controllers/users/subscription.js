@@ -11,6 +11,7 @@ const subscription = async (req, res) => {
   const data = req.body
   const { error } = joiSchema.validate(req.body)
 
+  // subscription має бути одне з 3-х значень ['starter', 'pro', 'business']
   if (error || !['starter', 'pro', 'business'].includes(data.subscription)) {
     throw new BadRequest('missing field subscription')
   }
