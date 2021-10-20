@@ -1,9 +1,9 @@
 const controllerWrapper = require('./controllerWrapper')
 const authMiddleware = require('./authMiddleware')
-const updateAvatar = require('./updateAvatar')
+const updateAvatarMiddleware = require('./updateAvatarMiddleware')
 
 module.exports = {
   controllerWrapper,
   authMiddleware,
-  updateAvatar,
+  updateAvatarMiddleware,
 }

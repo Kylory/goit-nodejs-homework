@@ -3,7 +3,7 @@ const router = express.Router()
 const {
   controllerWrapper,
   authMiddleware,
-  updateAvatar,
+  updateAvatarMiddleware,
 } = require('../../middlewares')
 
 const {
@@ -12,7 +12,7 @@ const {
   logout,
   current,
   subscription,
-  updateUserAvatar,
+  avatar,
 } = require('../../controllers/users')
 
 // Для всіх маршрутів, які будуть нижче
@@ -33,8 +33,8 @@ router.get('/current', authMiddleware, controllerWrapper(current))
 router.patch(
   '/avatars',
   authMiddleware,
-  updateAvatar.single('image'),
-  controllerWrapper(updateUserAvatar)
+  updateAvatarMiddleware.single('avatar'),
+  controllerWrapper(avatar)
 )
 
 module.exports = router
