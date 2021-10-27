@@ -6,8 +6,8 @@ require('dotenv').config()
 const loginUser = async ({ email, password }) => {
   const user = await User.findOne({ email })
 
-  // Якщо такого юзера немає в БД повертаємо null, який обробить інша функція
-  if (!user) {
+  // Якщо такого юзера немає в БД, або його email не верифіковано повертаємо null, який обробить інша функція
+  if (!user || !user.verify) {
     return null
   }
 
