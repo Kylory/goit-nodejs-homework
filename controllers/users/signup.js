@@ -45,6 +45,7 @@ const signup = async (req, res) => {
     Status: '201 Created',
     'Content-Type': 'application/json',
     ResponseBody: {
+      message: 'Verification link has been sent to you email',
       user: {
         email: result.email,
         subscription: result.subscription,

@@ -14,6 +14,7 @@ const {
   subscription,
   avatar,
   verify,
+  reVerify,
 } = require('../../controllers/users')
 
 // Для всіх маршрутів, які будуть нижче
@@ -32,6 +33,8 @@ router.post('/logout', authMiddleware, controllerWrapper(logout))
 router.get('/current', authMiddleware, controllerWrapper(current))
 
 router.get('/verify/:verificationToken', controllerWrapper(verify))
+
+router.post('/verify', controllerWrapper(reVerify))
 
 router.patch(
   '/avatars',

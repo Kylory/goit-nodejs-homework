@@ -5,6 +5,7 @@ const { signup } = require('./signup')
 const { subscription } = require('./subscription')
 const { avatar } = require('./avatar')
 const { verify } = require('./verify')
+const { reVerify } = require('./reVerify')
 
 module.exports = {
   current,
@@ -14,4 +15,5 @@ module.exports = {
   subscription,
   avatar,
   verify,
+  reVerify,
 }
